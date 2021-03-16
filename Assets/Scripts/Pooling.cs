@@ -15,10 +15,6 @@ namespace DefaultNamespace
         private void Awake()
         {
             instance = this;
-        }
-
-        private void Start()
-        {
             pooledObjects = new List<GameObject>();
             for (int i = 0; i < countObjects; i++)
             {
@@ -26,6 +22,11 @@ namespace DefaultNamespace
                 obj.SetActive(false);
                 pooledObjects.Add(obj);
             }
+        }
+
+        private void Start()
+        {
+
         }
 
         public GameObject GetPooledObject()
