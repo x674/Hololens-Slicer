@@ -46,11 +46,9 @@ public class setPose : MonoBehaviour, IMixedRealitySourceStateHandler, IMixedRea
 
     public void OnHandJointsUpdated(InputEventData<IDictionary<TrackedHandJoint, MixedRealityPose>> eventData)
     {
-        MixedRealityPose palmPose;
         if (eventData.Handedness == Handedness.Left)
         {
-            MixedRealityPose leftPose;
-            eventData.InputData.TryGetValue(TrackedHandJoint.ThumbProximalJoint, out leftPose);
+            eventData.InputData.TryGetValue(TrackedHandJoint.ThumbProximalJoint, out MixedRealityPose leftPose);
             LeftH.gameObject.SetActive(true);
             LeftH.position = leftPose.Position;
             LeftH.rotation = leftPose.Rotation* Quaternion.Euler(0,40,0);
@@ -60,8 +58,7 @@ public class setPose : MonoBehaviour, IMixedRealitySourceStateHandler, IMixedRea
 
         if (eventData.Handedness == Handedness.Right)
         {
-            MixedRealityPose rightPose;
-            eventData.InputData.TryGetValue(TrackedHandJoint.ThumbProximalJoint, out rightPose);
+            eventData.InputData.TryGetValue(TrackedHandJoint.ThumbProximalJoint, out MixedRealityPose rightPose);
             RightH.gameObject.SetActive(true);
             RightH.position = rightPose.Position;
             RightH.rotation = rightPose.Rotation * Quaternion.Euler(0,40,0);
